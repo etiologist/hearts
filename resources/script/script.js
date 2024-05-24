@@ -1,14 +1,8 @@
 const button = document.getElementById("loading-button");
 const square = document.getElementById("square");
 
-function startClock(){
-  square.classList.remove("box1")
-}
-
-if(window.addEventListener) {
-  window.addEventListener('load',startClock,false); //W3C
-} else {
-  window.attachEvent('onload',startClock); //IE
+window.onload = function(){
+  square.classList.remove("box1");  
 }
 
 button.addEventListener("click", () => {
