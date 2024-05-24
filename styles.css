@@ -49,3 +49,100 @@
   }
 }
 
+@keyframes changeShape {
+  from {
+    background-color: lightslategray;
+    border-radius: 20px;
+    transform: scale(.5) skewX();
+  }
+  to {
+    background: lightsalmon;
+    border-radius: 100px;
+    transform: scale(1);
+  }
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: lightslategray;
+  }
+ 33% {
+    background: rgb(204, 133, 105);
+  }
+  100% {
+    background: rgb(197, 56, 0);
+  }
+}
+
+@keyframes enlarge {
+  0% {
+    width: 200px;
+  }
+
+  100% {
+    width: 400px;
+  }
+}
+
+.box {
+margin: 10px;
+display: block;
+float: left;
+}
+
+.box1 {
+width: 200px;
+height: 200px;
+animation-name: changeShape;
+animation-duration: 2s;
+animation-fill-mode: backwards;
+animation-iteration-count: 10;
+animation-play-state: paused;
+}
+
+.box1:hover {
+animation-play-state: running;
+}
+
+.box2 {
+width: 200px;
+height: 200px;
+background: lightskyblue;
+/* animation-name: changeColor;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+animation-iteration-count: infinite; */
+animation: changeColor 3s linear forwards 5, enlarge 3s ease 5;
+/*conbine two animation*/
+
+}
+
+.box3 {
+width: 200px;
+height: 200px;
+background: lightpink;
+animation-name: enlarge;
+animation-duration: 1s;
+animation-iteration-count: 4;
+animation-direction: alternate;
+animation-fill-mode: both;
+}
+
+.cat {
+width: 350px;
+height: 380px;
+margin: 0 auto;
+background: url(img/25.png);
+animation: walk 2s steps(9) 5;
+clear: both;
+}
+
+@keyframes walk {
+  0% {
+   background-position: left top;
+  }
+
+  100% {
+    background-position: -2500px;
+  }
+}
