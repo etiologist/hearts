@@ -1,6 +1,16 @@
 const button = document.getElementById("loading-button");
 const square = document.getElementById("square");
 
+function startClock(){
+  square.classList.remove("box1")
+}
+
+if(window.addEventListener) {
+  window.addEventListener('load',startClock,false); //W3C
+} else {
+  window.attachEvent('onload',startClock); //IE
+}
+
 button.addEventListener("click", () => {
   // Disable the button to prevent multiple clicks
   button.disabled = true;
