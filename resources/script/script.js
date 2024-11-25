@@ -1,27 +1,50 @@
-const button = document.getElementById("loading-button");
-const square = document.getElementById("square");
+const heartsBox = document.querySelector('.hearts');
+const hearts = Array.from(document.querySelectorAll('.heart'));
+const button = document.querySelector('.button');
+const { innerWidth, innerHeight } = window;
+let currentAnimation;
 
-window.onload = function(){
-  square.classList.remove("box1");  
-}
+gsap.set(heartsBox, { visibility: 'visible' });
+gsap.set(hearts, { opacity: 0 });
 
-button.addEventListener("click", () => {
-  // Disable the button to prevent multiple clicks
-  button.disabled = true;
+const heartPop = ({ x, y }) => {
+	if (currentAnimation) currentAnimation.kill();
 
-  // Add the loading animation CSS class
-  
-  square.classList.add("box1");
-  
+	currentAnimation = gsap.timeline().addLabel('start');
 
-  // Simulate an asynchronous task (replace this with your actual task)
-  setTimeout(() => {
-    // Re-enable the button
-    button.disabled = false;
+	hearts.forEach((heart, index) => {
+		const heartAnimation = gsap
+			.timeline()
+			.set(heart, {
+				opacity: 1,
+				scale: 0,
+				x: x,
+				y: y,
+			})
+			.to(
+				heart,
+				{
+					duration: 0.5,
+					ease: 'power1.out',
+					rotate: 60 - Math.random() * 120,
+					scale: 0.2 + Math.random() * 1,
+					delay: index * 0.02,
+					x: x + innerWidth / 4 - (Math.random() * innerWidth) / 2,
+					y: y - 50 - Math.random() * (innerHeight / 4),
+				}
+			)
+			.to(heart, {
+				duration: 0.5,
+				opacity: 0,
+				y: y + 200,
+				rotate: 0,
+				ease: 'power1.in',
+			});
 
-    // Remove the loading animation CSS class
-    square.classList.remove("box1");
-    
+		currentAnimation.add(heartAnimation, 'start');
+	});
+};
 
-  }, 2000); // Simulated 2-second task
+button.addEventListener('click', event => {
+	heartPop(event);
 });

@@ -1,97 +1,41 @@
-
-#container {
+.container {
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  height: 800px;
-  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
-
-
-@keyframes changeShape {
-  from {
-    background-color: lightslategray;
-    border-radius: 20px;
-    transform: scale(.5) skewX();
-  }
-  to {
-    background: lightsalmon;
-    border-radius: 100px;
-    transform: scale(1);
-  }
-}
-
-@keyframes changeColor {
-  0% {
-    background-color: lightslategray;
-  }
- 33% {
-    background: rgb(204, 133, 105);
-  }
-  100% {
-    background: rgb(197, 56, 0);
-  }
-}
-
-@keyframes enlarge {
-  0% {
-    width: 200px;
-  }
-
-  100% {
-    width: 400px;
-  }
-}
-
-/* .box1 {
-width: 200px;
-height: 200px;
-background: lightpink;
-animation-name: enlarge;
-animation-duration: 1s;
-animation-iteration-count: 4;
-animation-direction: alternate;
-animation-fill-mode: both;
-margin: auto;
-} */
-
-.box2 {
-  width: 100px;
-  height: 100px;
-  margin: auto;
-}
-
-.box1 {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.box1::before, .box1::after {
-  content: "";
+.hearts {
+  visibility: hidden;
   position: absolute;
-  top: 0;
-  width: 52px;
-  height: 80px;
-  border-radius: 50px 50px 0 0;
-  background: lightpink;
 }
 
-.box1::before {
-  left: 50px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-
-.box1::after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-
-/* .box2 {
+.heart {
   width: 50px;
-  height: 100px;
-  margin: auto;
-} */
+  height: 50px;
+  color: hotpink;
+  pointer-events: none;
+  z-index: 100;
+  position: absolute;
+}
 
+.button {
+  background: white;
+  color: black;
+  border: 3px solid black;
+  font-size: 2rem;
+  padding: 0.5em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  outline: 2px solid transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  transition: 0.2s all;
+}
+.button:active {
+  outline: 2px solid black;
+}
